@@ -13,7 +13,8 @@ import (
 )
 
 //this is subject to change based on the connection parameters, could also be configurable
-const CONNECTIONSTRING = "mongodb://127.0.0.1"
+// const CONNECTIONSTRING = "mongodb://127.0.0.1"
+const CONNECTIONSTRING = "mongodb://mongo-server"
 
 type mongoDocument struct {
 	Id       bson.ObjectId `bson:"_id"`
@@ -32,7 +33,7 @@ func NewDBConnection() (conn *MongoConnection) {
 }
 
 func (c *MongoConnection) createLocalConnection() (err error) {
-	fmt.Println("Connecting to local mongo server....")
+	fmt.Println("Connecting to mongo server " + CONNECTIONSTRING + " ....")
 	c.originalSession, err = mgo.Dial(CONNECTIONSTRING)
 	if err == nil {
 		fmt.Println("Connection established to mongo server")
